@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{140FDD56-548A-439C-94E9-5B763EBD7955}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>TMDBApp</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)TinyIoC\TinyIoC.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\GenreList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Genre.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Movie.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Genres\IGenreService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Movies\IMovieService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\MovieList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\RequestsProvider\IRequestProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\RequestsProvider\RequestProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factories\HttpClientFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Exception\HttpRequestExceptionEx.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Genres\GenreService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GlobalSetting.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Settings\ISettingsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Settings\SettingsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Movies\MovieService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Base\ViewModelLocator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Navigation\INavigationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Base\ViewModelBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Navigation\NavigationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Dialog\IDialogService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Dialog\DialogService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Base\ExtendedBindableObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MovieViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MovieDetailsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\NavigationView.xaml.cs">
+      <DependentUpon>NavigationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\AddRangeExtension.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\NavigationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Models\" />
+    <Folder Include="$(MSBuildThisFileDirectory)TinyIoC\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Services\" />
+    <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Services\Genres\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Services\Movies\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Services\RequestsProvider\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Factories\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Exception\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Services\Settings\" />
+    <Folder Include="$(MSBuildThisFileDirectory)ViewModels\Base\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Services\Navigation\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Services\Dialog\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Extensions\" />
+  </ItemGroup>
+</Project>
