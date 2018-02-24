@@ -138,6 +138,12 @@
     <ImageAsset Include="Resources\Icons.xcassets\LaunchImages.launchimage\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Resources\Icons.xcassets\ic_movie_creation_18pt.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Icons.xcassets\ic_movie_filter_white_36pt.imageset\Contents.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\Icons.xcassets\ic_movie_creation_18pt.imageset\" />
+    <Folder Include="Resources\Icons.xcassets\ic_movie_filter_white_36pt.imageset\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
