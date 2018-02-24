@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="TMDBApp.Core.Views.Templates.MovieTemplate">
+    <ContentView.Content>
+        <Grid>
+            <!--<Image
+                Source="{Binding BackdropPath, Converter={StaticResource ImageConverter}}"        
+                Aspect="AspectFit"
+                HeightRequest="281"
+                WidthRequest="281"
+                BackgroundColor="Gray"
+                VerticalOptions="CenterAndExpand" />-->
+
+            <ffimageloading:CachedImage 
+                Source="{Binding BackdropPath, Converter={StaticResource ImageConverter}}"     
+                Aspect="AspectFill">
+                <ffimageloading:CachedImage.LoadingPlaceholder>
+                    <OnPlatform x:TypeArguments="ImageSource">
+                        <On Platform="iOS, Android" Value="default_campaign" />
+                    </OnPlatform>
+                </ffimageloading:CachedImage.LoadingPlaceholder>
+                <ffimageloading:CachedImage.ErrorPlaceholder>
+                    <OnPlatform x:TypeArguments="ImageSource">
+                        <On Platform="iOS, Android" Value="noimage" />
+                    </OnPlatform>
+                </ffimageloading:CachedImage.ErrorPlaceholder>
+            </ffimageloading:CachedImage>
+
+            <StackLayout 
+                HorizontalOptions="FillAndExpand"
+                Padding="10"
+                BackgroundColor="#66000000">
+
+                <Label 
+                    FontSize="32"
+                    FontAttributes="Bold"
+                    Text="{Binding Title}" 
+                    TextColor="White"
+                    HorizontalOptions="Start"
+                />
+
+                <Label 
+                    Margin="0"
+                    FontSize="14"
+                    FontAttributes="Italic"
+                    Text="{Binding GenreNames}" 
+                    TextColor="White"
+                    HorizontalOptions="Start"
+                />
+
+                <StackLayout
+                    HorizontalOptions="EndAndExpand"
+                    VerticalOptions="EndAndExpand"
+                    Orientation="Horizontal">
+                    <Image Source="ic_movie_filter_white_36dp"
+                           HeightRequest="36"
+                           WidthRequest="36"
+                           Aspect="AspectFit"></Image>
+                    <Label 
+                        Margin="0"
+                        FontAttributes="Bold"
+                        FontSize="36"
+                        Text="{Binding ReleaseDate, Converter={StaticResource DateTimeConverter}}" 
+                        TextColor="White"
+                        HorizontalOptions="Start"
+                    />
+                </StackLayout>
+
+            </StackLayout>
+        </Grid>
+    </ContentView.Content>
+</ContentView>
+    
