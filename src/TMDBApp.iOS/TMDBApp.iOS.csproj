@@ -87,6 +87,9 @@
     <CodesignKey>iPhone Distribution</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
+    <AppExtensionDebugBundleId />
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
@@ -138,12 +141,13 @@
     <ImageAsset Include="Resources\Icons.xcassets\LaunchImages.launchimage\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Resources\Icons.xcassets\ic_movie_creation_18pt.imageset\Contents.json" />
-    <ImageAsset Include="Resources\Icons.xcassets\ic_movie_filter_white_36pt.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Icons.xcassets\ic_movie_creation_18pt.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Icons.xcassets\ic_movie_filter_white_36pt.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\Icons.xcassets\ic_movie_creation_18pt.imageset\" />
-    <Folder Include="Resources\Icons.xcassets\ic_movie_filter_white_36pt.imageset\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

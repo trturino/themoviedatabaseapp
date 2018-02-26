@@ -12,6 +12,7 @@
             <On Platform="iOS" Value="TBMD App" />
         </OnPlatform>
     </TabbedPage.Title>
-    <views:MovieListView x:Name="MovieListView"></views:MovieListView>
+    <views:MovieListView Icon="ic_movie_creation_18pt" x:Name="MovieListView">
+    </views:MovieListView>
 
 </TabbedPage>

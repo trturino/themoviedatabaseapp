@@ -15,23 +15,29 @@ namespace TMDBApp.Core.ViewModels
     {
         private readonly ISettingsService _settingsService;
         private readonly IMovieService _movieService;
-
         private readonly ObservableCollection<Movie> _movies;
 
         private int _pages;
-        private int _actualPage;
+        private int _currentPage;
 
         public MovieListViewModel(ISettingsService settingsService, IMovieService movieService)
         {
             _settingsService = settingsService;
             _movieService = movieService;
             _movies = new ObservableCollection<Movie>();
-            _actualPage = 1;
+            _currentPage = 1;
         }
 
         public ICollection<Movie> Movies => _movies;
 
         public ICommand GetMovieDetailsCommand => new Command<Movie>(async (item) => await GetMovieDetailsAsync(item));
+
+        public ICommand LoadMore => new Command(async () => await LoadNextPage());
+
+        private async Task LoadNextPage()
+        {
+              
+        }
 
         private async Task GetMovieDetailsAsync(Movie movie)
         {
@@ -42,9 +48,9 @@ namespace TMDBApp.Core.ViewModels
         {
             try
             {
-                _actualPage = 1;
+                _currentPage = 1;
 
-                (var movies, var pages) = await _movieService.GetUpcomingMoviesAndPagesAsync(_actualPage);
+                (var movies, var pages) = await _movieService.GetUpcomingMoviesAndPagesAsync(_currentPage);
 
                 _pages = pages;
 
