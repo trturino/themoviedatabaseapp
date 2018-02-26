@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Threading;
 using System.Threading.Tasks;
 using TMDBApp.Core.Models;
 using TMDBApp.Core.ViewModels;
@@ -32,10 +33,19 @@ namespace TMDBApp.UnitTests.ViewModel
         }
 
         [Fact]
-        public void LoadMoreCommandShuldLoadMoreMovies()
+        public async void LoadMoreCommandShuldLoadMoreMovies()
         {
             var movieViewModel = ViewModelLocator.Resolve<MovieListViewModel>();
+            await movieViewModel.InitializeAsync(null);
 
+            var initialCount = movieViewModel.Movies.Count;
+
+            movieViewModel.LoadMoreCommand.Execute(null);
+            Thread.Sleep(10000);
+
+            var finalCount = movieViewModel.Movies.Count;
+
+            Assert.True(initialCount < finalCount);
         }
 
         [Fact]

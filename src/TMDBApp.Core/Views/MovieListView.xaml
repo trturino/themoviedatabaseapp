@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModelBase="clr-namespace:TMDBApp.Core.ViewModels.Base;assembly=TMDBApp.Core"
              xmlns:templates="clr-namespace:TMDBApp.Core.Views.Templates;assembly=TMDBApp.Core"
+             xmlns:behaviors="clr-namespace:TMDBApp.Core.Behaviors;assembly=TMDBApp.Core"
              viewModelBase:ViewModelLocator.AutoWireViewModel="true"
              Title="Movies"
              x:Class="TMDBApp.Core.Views.MovieListView">
@@ -27,6 +28,10 @@
                 <ListView
                     Style="{StaticResource MovieListStyle}"
                     ItemsSource="{Binding Movies}">
+                    <ListView.Behaviors>
+                        <behaviors:InfiniteScrollBehavior 
+                            LoadMoreCommand="{Binding LoadMoreCommand}"/>
+                    </ListView.Behaviors>
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -41,7 +46,7 @@
             <ActivityIndicator
                 Grid.Row="0"
                 Grid.RowSpan="2"
-                Color="Black"
+                Color="Bisque"
                 IsRunning="{Binding IsBusy}"  
                 IsVisible="{Binding IsBusy}"
                 VerticalOptions="Center"

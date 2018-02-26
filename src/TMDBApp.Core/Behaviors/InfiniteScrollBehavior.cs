@@ -3,24 +3,19 @@ using System.Collections;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace TMDBApp.Core.Behavior
+namespace TMDBApp.Core.Behaviors
 {
     public class InfiniteScrollBehavior : Behavior<ListView>
     {
         public static readonly BindableProperty LoadMoreCommandProperty =
-            BindableProperty.Create(
-                nameof(LoadMoreCommand),
-                typeof(bool),
-                typeof(InfiniteScrollBehavior),
-                default(bool),
-                BindingMode.OneWayToSource);
+            BindableProperty.CreateAttached("LoadMoreCommand", typeof(ICommand), typeof(InfiniteScrollBehavior), null);
 
         private ListView _associatedListView;
 
         public ICommand LoadMoreCommand
         {
             get => (ICommand)GetValue(LoadMoreCommandProperty);
-            private set => SetValue(LoadMoreCommandProperty, value);
+            set => SetValue(LoadMoreCommandProperty, value);
         }
 
         protected override void OnAttachedTo(ListView bindable)

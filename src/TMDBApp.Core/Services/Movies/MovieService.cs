@@ -55,14 +55,14 @@ namespace TMDBApp.Core.Services.Movies
             var result = await GetMovieListAsync(page);
 
             //Sometimes the API return old movies
-            return result.Results.Where(x => x.ReleaseDate >= DateTime.Now.Date);
+            return result.Results.Where(x => x.ReleaseDate >= DateTime.Now.Date).ToList();
         }
 
         private async Task<MovieList> GetMovieListAsync(int page)
         {
             var uri = $"{_settingsService.UrlBase}{DISCOVERAPIURL}?api_key={_settingsService.ApiKey}" +
                 $"&language=en-US&include_adult=false&include_video=false&page={page}" +
-                $"&primary_release_date.gte={DateTime.Now:yyyy-MM-dd}&sort_by=release_date.asc";
+                $"&primary_release_date.gte={DateTime.Now:yyyy-MM-dd}&sort_by=primary_release_date.asc";
 
             var movieList = await _requestProvider.GetAsync<MovieList>(uri);
 
