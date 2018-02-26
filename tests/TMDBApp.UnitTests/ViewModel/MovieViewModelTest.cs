@@ -18,6 +18,27 @@ namespace TMDBApp.UnitTests.ViewModel
         }
 
         [Fact]
+        public void GetMovieDetailShoudntBeNull()
+        {
+            var movieViewModel = ViewModelLocator.Resolve<MovieListViewModel>();
+            Assert.NotNull(movieViewModel.GetMovieDetailsCommand);
+        }
+
+        [Fact]
+        public void LoadMoreCommandShoudntBeNull()
+        {
+            var movieViewModel = ViewModelLocator.Resolve<MovieListViewModel>();
+            Assert.NotNull(movieViewModel.LoadMoreCommand);
+        }
+
+        [Fact]
+        public void LoadMoreCommandShuldLoadMoreMovies()
+        {
+            var movieViewModel = ViewModelLocator.Resolve<MovieListViewModel>();
+
+        }
+
+        [Fact]
         public async Task InitializeShouldRaiseCollectionChanged()
         {
             var movieViewModel = ViewModelLocator.Resolve<MovieListViewModel>();

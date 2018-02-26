@@ -32,11 +32,20 @@ namespace TMDBApp.Core.ViewModels
 
         public ICommand GetMovieDetailsCommand => new Command<Movie>(async (item) => await GetMovieDetailsAsync(item));
 
-        public ICommand LoadMore => new Command(async () => await LoadNextPage());
+        public ICommand LoadMoreCommand => new Command(async () => await LoadNextPage());
 
         private async Task LoadNextPage()
         {
-              
+            try
+            {
+                var movies = await _movieService.GetUpcomingMoviesAsync(++_currentPage);
+
+                _movies.AddRange(movies);
+            } 
+            catch (System.Exception)
+            {
+                await DialogService.ShowAlertAsync("There was an error encountered while loading the movies list! Please check your internet connection, and try again.", "", "Ok");
+            }
         }
 
         private async Task GetMovieDetailsAsync(Movie movie)
