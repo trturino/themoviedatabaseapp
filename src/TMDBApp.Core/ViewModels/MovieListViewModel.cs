@@ -17,6 +17,7 @@ namespace TMDBApp.Core.ViewModels
         private readonly ISettingsService _settingsService;
         private readonly IMovieService _movieService;
         private readonly ObservableCollection<Movie> _movies;
+        private bool _isInitialized;
 
         private int _pages;
         private int _currentPage;
@@ -26,6 +27,7 @@ namespace TMDBApp.Core.ViewModels
             _settingsService = settingsService;
             _movieService = movieService;
             _movies = new ObservableCollection<Movie>();
+            _isInitialized = false;
         }
 
         public ICollection<Movie> Movies => _movies;
@@ -66,6 +68,8 @@ namespace TMDBApp.Core.ViewModels
 
         public override async Task InitializeAsync(object navigationData)
         {
+            if (_isInitialized) return;
+
             IsBusy = true;
             try
             {
@@ -76,8 +80,10 @@ namespace TMDBApp.Core.ViewModels
                 _pages = pages;
 
                 _movies.AddRange(movies);
+
+                _isInitialized = true;
             }
-            catch (System.Exception)
+            catch (System.Exception ex)
             {
                 await DialogService.ShowAlertAsync("There was an error encountered while loading the movies list! Please check your internet connection, and try again.", "", "Ok");
             }
