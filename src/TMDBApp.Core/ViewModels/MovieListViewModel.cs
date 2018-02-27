@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using TMDBApp.Core.Extensions;
@@ -43,7 +44,13 @@ namespace TMDBApp.Core.ViewModels
                 var movies = await _movieService.GetUpcomingMoviesAsync(_currentPage + 1);
                 _currentPage++;
 
-                _movies.AddRange(movies);
+                foreach (var item in movies)
+                {
+                    if (_movies.Any(i => i.Id == item.Id))
+                        continue;
+
+                    _movies.Add(item);
+                }
             } 
             catch (System.Exception)
             {

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TMDBApp"
+             xmlns:base="clr-namespace:TMDBApp.Core.ViewModels.Base;assembly=TMDBApp.Core"
+             xmlns:views="clr-namespace:TMDBApp.Core.Views;assembly=TMDBApp.Core"
+             x:Class="TMDBApp.Core.Views.PrincipalPage"
+             Title="Upcoming movies"
+			 base:ViewModelLocator.AutoWireViewModel="true">
+    <ContentPage.Content>
+        <views:MovieListView x:Name="MovieListView">
+        </views:MovieListView>
+    </ContentPage.Content>
+</ContentPage>

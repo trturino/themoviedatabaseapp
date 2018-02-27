@@ -81,7 +81,7 @@ namespace TMDBApp.Core.Services.Navigation
                 Application.Current.MainPage = new NavigationView(page);
             }
 
-            await (page.BindingContext as ViewModelBase).InitializeAsync(parameter);
+            await (page.BindingContext as ViewModelBase)?.InitializeAsync(parameter);
         }
 
         private Type GetPageTypeForViewModel(Type viewModelType)

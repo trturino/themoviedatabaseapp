@@ -3,12 +3,12 @@ using TMDBApp.Core.ViewModels;
 
 namespace TMDBApp.Core.Views
 {
-	public partial class MainPage
-	{
+	public partial class PrincipalPage
+    {
 	    protected MovieListViewModel MovieListViewModel => MovieListView.BindingContext as MovieListViewModel;
 
 
-        public MainPage()
+        public PrincipalPage()
 		{
 			InitializeComponent();
 		}

@@ -1,13 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModelBase="clr-namespace:TMDBApp.Core.ViewModels.Base;assembly=TMDBApp.Core"
              xmlns:templates="clr-namespace:TMDBApp.Core.Views.Templates;assembly=TMDBApp.Core"
              xmlns:behaviors="clr-namespace:TMDBApp.Core.Behaviors;assembly=TMDBApp.Core"
              viewModelBase:ViewModelLocator.AutoWireViewModel="true"
-             Title="Movies"
              x:Class="TMDBApp.Core.Views.MovieListView">
-    <ContentPage.Resources>
+    <ContentView.Resources>
         <ResourceDictionary>
             <OnPlatform x:TypeArguments="x:Int32" x:Key="RowHeightMovieList">
                 <On Platform="iOS">200</On>
@@ -17,8 +16,8 @@
                 <Setter Property="RowHeight" Value="{StaticResource RowHeightMovieList}" />
             </Style>
         </ResourceDictionary>
-    </ContentPage.Resources>
-    <ContentPage.Content>
+    </ContentView.Resources>
+    <ContentView.Content>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
@@ -31,6 +30,8 @@
                     <ListView.Behaviors>
                         <behaviors:InfiniteScrollBehavior 
                             LoadMoreCommand="{Binding LoadMoreCommand}"/>
+                        <behaviors:TappedCommandBehavior 
+                            Command="{Binding GetMovieDetailsCommand}"/>
                     </ListView.Behaviors>
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -42,7 +43,6 @@
                 </ListView>
             </Grid>
 
-            <!-- INDICATOR -->
             <ActivityIndicator
                 Grid.Row="0"
                 Grid.RowSpan="2"
@@ -59,5 +59,5 @@
             </ActivityIndicator>
         </Grid>
 
-    </ContentPage.Content>
-</ContentPage>
+    </ContentView.Content>
+</ContentView>

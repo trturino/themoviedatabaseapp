@@ -1,4 +1,5 @@
 ﻿using TMDBApp.Core.Views;
+using TMDBApp.Core.Views.Templates;
 using Xamarin.Forms;
 
 namespace TMDBApp.Core
@@ -9,7 +10,7 @@ namespace TMDBApp.Core
 		{
 			InitializeComponent();
 
-			MainPage = new MainPage();
+			MainPage = new NavigationView(new PrincipalPage());
 		}
 
 		protected override void OnStart ()

@@ -11,7 +11,7 @@ namespace TMDBApp.Core.Converters
             var rtnStr = string.Empty;
 
             if (value != null)
-                return $@"https://image.tmdb.org/t/p/w780/{value}";
+                rtnStr = $@"https://image.tmdb.org/t/p/w780/{value}";
 
             return rtnStr;
         }
