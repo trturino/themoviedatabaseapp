@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:base="clr-namespace:TMDBApp.Core.ViewModels.Base;assembly=TMDBApp.Core"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             base:ViewModelLocator.AutoWireViewModel="true"
+             Title="{Binding Movie.Title}"
+             x:Class="TMDBApp.Core.Views.MovieDetailsView">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1" Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="300"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" BackgroundColor="#66000000">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <forms:CachedImage 
+                        Grid.Column="0"
+                        Margin="2"
+                        Source="{Binding Movie.PosterPath, Converter={StaticResource ImageConverter}}"     
+                        Aspect="AspectFit">
+                        <forms:CachedImage.LoadingPlaceholder>
+                            <OnPlatform x:TypeArguments="ImageSource">
+                                <On Platform="iOS, Android" Value="default_campaign" />
+                            </OnPlatform>
+                        </forms:CachedImage.LoadingPlaceholder>
+                        <forms:CachedImage.ErrorPlaceholder>
+                            <OnPlatform x:TypeArguments="ImageSource">
+                                <On Platform="iOS, Android" Value="noimage" />
+                            </OnPlatform>
+                        </forms:CachedImage.ErrorPlaceholder>
+                        
+                    </forms:CachedImage>
+                    <StackLayout 
+                        Grid.Column="1" 
+                        HorizontalOptions="FillAndExpand"
+                        Padding="10">
+
+                        <Label 
+                            FontSize="32"
+                            FontAttributes="Bold"
+                            Text="{Binding Movie.Title}" 
+                            TextColor="White"
+                            HorizontalOptions="Start"
+                        />
+
+                        <Label 
+                            Margin="0"
+                            FontSize="14"
+                            FontAttributes="Italic"
+                            Text="{Binding Movie.GenreNames}" 
+                            TextColor="White"
+                            HorizontalOptions="Start"
+                        />
+
+                        <StackLayout
+                            HorizontalOptions="EndAndExpand"
+                            VerticalOptions="EndAndExpand"
+                            Orientation="Horizontal">
+                            <Label 
+                                Margin="0"
+                                FontAttributes="Bold"
+                                FontSize="36"
+                                Text="{Binding Movie.ReleaseDate, Converter={StaticResource DateTimeConverter}}" 
+                                TextColor="White"
+                                HorizontalOptions="Start"
+                            />
+                        </StackLayout>
+
+                    </StackLayout>
+                </Grid>
+                <StackLayout Grid.Row="1">
+                    <Label FontAttributes="Bold" TextColor="Black" Text="Overview"></Label>
+                    <Label Margin="5" Text="{Binding Movie.Overview}"></Label>
+                </StackLayout>
+            </Grid>
+
+            <ActivityIndicator
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                Color="Bisque"
+                IsRunning="{Binding IsBusy}"  
+                IsVisible="{Binding IsBusy}"
+                VerticalOptions="Center"
+                HorizontalOptions="Center">
+                <ActivityIndicator.WidthRequest>
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="iOS, Android" Value="100" />
+                    </OnPlatform>
+                </ActivityIndicator.WidthRequest>
+            </ActivityIndicator>
+            
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
